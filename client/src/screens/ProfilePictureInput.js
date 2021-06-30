@@ -6,7 +6,7 @@ import SimpleImagePicker from './SimpleImagePicker';
 
 function ProfilePictureInput({route, navigation}) {
   const handleNavigation = () => {
-    navigation.pop();
+    navigation.navigate('Home');
   };
 
   return (

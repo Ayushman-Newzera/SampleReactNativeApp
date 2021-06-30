@@ -2,8 +2,7 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
- * @format
- * @flow
+ *
  */
 
 import {
@@ -24,7 +23,7 @@ const httpLink = createHttpLink({
   uri: 'http://192.168.1.35:4000',
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
 });

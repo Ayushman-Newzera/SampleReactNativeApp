@@ -2,11 +2,12 @@
 
 import {gql, useMutation, useQuery} from '@apollo/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useIsFocused} from '@react-navigation/native';
+import {NavigationContainerProps, useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+// import {client} from '../../App';
 
-const USER_DETAILS = gql`
+export const USER_DETAILS = gql`
   query UserDetails {
     getUserDetails {
       name
@@ -16,13 +17,24 @@ const USER_DETAILS = gql`
   }
 `;
 
-const UPDATE_PROFILE = gql`
+export const UPDATE_PROFILE = gql`
   mutation UpdateProfileMutation($profileImageLink: String!) {
     addProfilePicture(profileImageLink: $profileImageLink)
   }
 `;
 
-function HomeScreen({navigation}) {
+// type HomeScreenNavigationProp = StackNavigationProp<{Home: undefined}, 'Home'>;
+
+// type HomeScreenProps = {
+//   navigation: HomeScreenNavigationProp,
+// };
+
+// type HomeScreenProps = {
+//   navigation: PropTypes.object,
+// };
+
+function HomeScreen(props: NavigationContainerProps) {
+  const {navigation} = props;
   const [borderActive, setBorderActive] = useState(true);
 
   const anonymousImage = {
@@ -118,6 +130,7 @@ function HomeScreen({navigation}) {
   }
 
   return (
+    // <ApolloProvider client={client}>
     // eslint-disable-next-line react-native/no-inline-styles
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <View style={styles.profileContainer}>
@@ -160,6 +173,7 @@ function HomeScreen({navigation}) {
         <Text>{data.getUserDetails.bio}</Text>
       </View>
     </View>
+    // </ApolloProvider>
   );
 }
 
@@ -206,5 +220,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+// HomeScreen.PropTypes = {
+//   navigation: PropTypes.array,
+// };
 
 export default HomeScreen;

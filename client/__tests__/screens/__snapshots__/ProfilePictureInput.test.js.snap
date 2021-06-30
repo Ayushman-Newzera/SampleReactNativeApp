@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "position": "relative",
+    }
+  }
+>
+  <SimpleImagePicker
+    asyncKey="@profilePicture"
+    handleNavigation={[Function]}
+  />
+</View>
+`;

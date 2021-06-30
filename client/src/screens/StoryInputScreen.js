@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, StyleSheet, View} from 'react-native';
 import UselessTextInputMultiline from '../utilities/TextInput';
 import SimpleImagePicker from './SimpleImagePicker';
@@ -11,7 +11,7 @@ function StoryInputScreen({navigation}) {
   // }, [navigation]);
 
   const handleNavigation = () => {
-    navigation.pop();
+    navigation.navigate('Home');
   };
 
   return (
@@ -24,7 +24,7 @@ function StoryInputScreen({navigation}) {
       <UselessTextInputMultiline />
 
       <View style={styles.submitButton}>
-        <Button title="Submit" onPress={() => navigation.pop()} />
+        <Button title="Submit" onPress={() => navigation.navigate('Home')} />
       </View>
     </View>
   );

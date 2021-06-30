@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar ProgressBar should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderColor": "#000",
+      "borderRadius": 5,
+      "borderWidth": 2,
+      "height": 11,
+      "marginTop": 50,
+      "width": "80%",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "white",
+          "borderRadius": 4,
+          "borderWidth": 1.5,
+          "height": 9,
+          "marginTop": -1,
+        },
+        Object {
+          "width": "NaN%",
+        },
+      ]
+    }
+  />
+</View>
+`;

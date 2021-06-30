@@ -8,13 +8,13 @@ const UselessTextInput = props => {
     <TextInput
       {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
       editable
-      maxLength={40}
+      maxLength={400}
     />
   );
 };
 
 const UselessTextInputMultiline = () => {
-  const [value, onChangeText] = React.useState();
+  const [value, onChangeText] = React.useState('sdfkjd');
 
   return (
     <View
@@ -27,7 +27,9 @@ const UselessTextInputMultiline = () => {
       <UselessTextInput
         multiline
         numberOfLines={4}
-        onChangeText={text => onChangeText(text)}
+        onChangeText={text => {
+          onChangeText(text);
+        }}
         placeholder="Here goes your opinion!"
         value={value}
       />

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "sdfkjd",
+      "borderBottomColor": "#000000",
+      "borderBottomWidth": 1,
+    }
+  }
+>
+  <UselessTextInput
+    multiline={true}
+    numberOfLines={4}
+    onChangeText={[Function]}
+    placeholder="Here goes your opinion!"
+    value="sdfkjd"
+  />
+</View>
+`;
