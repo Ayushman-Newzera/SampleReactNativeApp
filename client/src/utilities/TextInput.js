@@ -14,7 +14,7 @@ const UselessTextInput = props => {
 };
 
 const UselessTextInputMultiline = () => {
-  const [value, onChangeText] = React.useState('sdfkjd');
+  const [value, onChangeText] = React.useState();
 
   return (
     <View

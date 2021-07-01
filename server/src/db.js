@@ -5,6 +5,8 @@ const db = mysql.createPool({
   user: "root",
   password: "password",
   database: "SampleReactNativeApp",
+  queueLimit: 5,
+  connectionLimit : 5,
 });
 
 module.exports = db;

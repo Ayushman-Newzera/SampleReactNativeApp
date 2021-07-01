@@ -4,7 +4,7 @@ exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "sdfkjd",
+      "backgroundColor": undefined,
       "borderBottomColor": "#000000",
       "borderBottomWidth": 1,
     }
@@ -15,7 +15,6 @@ exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
     numberOfLines={4}
     onChangeText={[Function]}
     placeholder="Here goes your opinion!"
-    value="sdfkjd"
   />
 </View>
 `;

@@ -2,7 +2,7 @@
 
 import {gql, useMutation, useQuery} from '@apollo/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {NavigationContainerProps, useIsFocused} from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 // import {client} from '../../App';
@@ -18,7 +18,7 @@ export const USER_DETAILS = gql`
 `;
 
 export const UPDATE_PROFILE = gql`
-  mutation UpdateProfileMutation($profileImageLink: String!) {
+  mutation UpdateProfileMutation($profileImageLink: String) {
     addProfilePicture(profileImageLink: $profileImageLink)
   }
 `;
@@ -33,8 +33,8 @@ export const UPDATE_PROFILE = gql`
 //   navigation: PropTypes.object,
 // };
 
-function HomeScreen(props: NavigationContainerProps) {
-  const {navigation} = props;
+function HomeScreen({navigation}) {
+  // const {navigation} = props;
   const [borderActive, setBorderActive] = useState(true);
 
   const anonymousImage = {
@@ -75,12 +75,14 @@ function HomeScreen(props: NavigationContainerProps) {
       const jsonValue = await AsyncStorage.getItem('@profilePicture');
 
       if (jsonValue != null && jsonValue !== undefined) {
+        // console.log('string', JSON.stringify(JSON.parse(jsonValue)));
         await addProfileImageLink({
           variables: {
             profileImageLink: JSON.stringify(JSON.parse(jsonValue)),
           },
         })
           .then(res => {
+            // console.log('res', res);
             setProfilePicture(JSON.parse(res.data.addProfilePicture));
           })
           // eslint-disable-next-line no-shadow
@@ -93,7 +95,6 @@ function HomeScreen(props: NavigationContainerProps) {
       // return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
       // error reading value
-      console.log('error while getDataProfile', e);
     }
   };
 
@@ -118,13 +119,17 @@ function HomeScreen(props: NavigationContainerProps) {
       // return jsonValue != null ? jsonValue : null;
     } catch (e) {
       // error reading value
-      console.log('error while getDataStory', e);
     }
   };
 
+  // useEffect(() => {
+  //   console.log(loading, error, data);
+  // }, [loading, error, data]);
+
   if (loading) {
-    return <Text>'Loading...'</Text>;
+    return <Text>Loading...</Text>;
   }
+
   if (error) {
     return <Text>`Error! WTF is ${error.message}`</Text>;
   }

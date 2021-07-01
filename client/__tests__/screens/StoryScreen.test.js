@@ -1,7 +1,7 @@
-import {shallow} from 'enzyme';
+import {MockedProvider} from '@apollo/client/testing';
+import {mount} from 'enzyme';
 import React from 'react';
 import StoryScreen from '../../src/screens/StoryScreen';
-import {MockedProvider} from '@apollo/client/testing';
 
 /**
  * Used to create an object of props
@@ -15,7 +15,7 @@ const createStoryScreenProps = props => ({
   },
   route: {
     params: {
-      stories,
+      stories: {stories},
       handleBorderActivity,
     },
   },
@@ -39,7 +39,7 @@ const handleBorderActivity = () => {
 describe('UselessTextInputMultiline', () => {
   it('TextInput should render correctly', () => {
     const props = createStoryScreenProps();
-    const wrapper = shallow(
+    const wrapper = mount(
       <MockedProvider addTypename>
         <StoryScreen {...props} />
       </MockedProvider>,
@@ -47,5 +47,9 @@ describe('UselessTextInputMultiline', () => {
 
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('useEffect and Timeout should work correctly', () => {
+    jest.useFakeTimers();
   });
 });

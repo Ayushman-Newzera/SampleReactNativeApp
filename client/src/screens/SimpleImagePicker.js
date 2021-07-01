@@ -29,7 +29,7 @@ export default function SimpleImagePicker(props) {
     };
 
     ImagePicker.showImagePicker(options, async response => {
-      // console.log({ response });
+      // console.log({response});
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -39,8 +39,8 @@ export default function SimpleImagePicker(props) {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
+        console.log(response.uri);
         let source = {uri: response.uri};
-        // console.log({ source });
         storeData(source);
         props.handleNavigation();
       }

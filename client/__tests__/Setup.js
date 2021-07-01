@@ -9,6 +9,7 @@ import 'react-native-gesture-handler/jestSetup';
  * Configure enzyme
  */
 configure({adapter: new Adapter()});
+global.console.error = jest.fn();
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
@@ -29,12 +30,13 @@ jest.mock('@react-navigation/native', () => {
   const actualNav = jest.requireActual('@react-navigation/native');
   return {
     ...actualNav,
-    useNavigation: () => ({
-      navigate: jest.fn(),
-      dispatch: jest.fn(),
-      useNavigation: jest.fn(),
-      useIsFocused: jest.fn(),
-      useFocusEffect: jest.fn(),
-    }),
+    // useNavigation: () => ({
+    //   navigate: jest.fn(),
+    //   dispatch: jest.fn(),
+    //   useNavigation: jest.fn(),
+    //   useIsFocused: jest.fn(),
+    //   useFocusEffect: jest.fn(),
+    // }),
+    useIsFocused: jest.fn(),
   };
 });
