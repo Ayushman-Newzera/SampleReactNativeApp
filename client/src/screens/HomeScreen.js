@@ -82,12 +82,11 @@ function HomeScreen({navigation}) {
           },
         })
           .then(res => {
-            // console.log('res', res);
             setProfilePicture(JSON.parse(res.data.addProfilePicture));
           })
           // eslint-disable-next-line no-shadow
-          .catch(function (error) {
-            console.log('???', error);
+          .catch(error => {
+            console.log(error);
           });
       } else {
         setProfilePicture(anonymousImage);

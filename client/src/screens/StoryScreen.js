@@ -6,6 +6,7 @@ import ProgressBar from '../utilities/ProgressBar';
 
 function StoryScreen({route, navigation}) {
   const {stories, handleBorderActivity} = route.params;
+  // console.log('handle', handleBorderActivity);
   const userStories = stories.stories;
 
   const [curStory, setCurStory] = useState(0);
@@ -17,7 +18,7 @@ function StoryScreen({route, navigation}) {
     useEffect(() => {
       const intervalId = setInterval(() => {
         if (progress < 1) {
-          setElapsedTime(t => t + 0.164);
+          setElapsedTime(t => t + 0.166);
         }
       }, 100);
 
@@ -40,20 +41,16 @@ function StoryScreen({route, navigation}) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let newStory = 0;
       if (curStory !== userStories.length - 1) {
-        newStory = curStory + 1;
-        setCurStory(newStory);
+        setCurStory(curStory + 1);
       } else {
         setCurStory(0);
         navigation.navigate('Home');
       }
     }, 5000);
 
-    return function cleanup() {
-      clearInterval(interval);
-    };
-  }, [curStory, navigation, userStories.length]);
+    return () => clearInterval(interval);
+  }, [curStory, navigation, userStories]);
 
   const progress = useProgress();
 

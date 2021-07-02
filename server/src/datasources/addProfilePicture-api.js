@@ -17,7 +17,7 @@ class AddProfilePictureAPI {
         } else {
           console.log("result", result);
         }
-        conn.release();
+        conn.destroy();
       });
     });
 

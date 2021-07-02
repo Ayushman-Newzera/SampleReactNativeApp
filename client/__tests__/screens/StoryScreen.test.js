@@ -28,12 +28,14 @@ const createStoryScreenProps = props => ({
 const stories = [
   {
     imageLink:
-      'https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1099&q=80',
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcars&psig=AOvVaw2tJrsSDJK_jfSHbgnx7FiX&ust=1625234888760000&source=images&cd=vfe&ved=0CAcQjRxqFwoTCPDqrPOFwvECFQAAAAAdAAAAABAM',
   },
 ];
 
-const handleBorderActivity = () => {
-  console.log('here');
+const handleBorderActivity = {
+  handleBorderActivity: () => {
+    // console.log('here');
+  },
 };
 
 describe('UselessTextInputMultiline', () => {
@@ -51,5 +53,49 @@ describe('UselessTextInputMultiline', () => {
 
   it('useEffect and Timeout should work correctly', () => {
     jest.useFakeTimers();
+
+    const props = createStoryScreenProps();
+    const wrapper = mount(
+      <MockedProvider addTypename>
+        <StoryScreen {...props} />
+      </MockedProvider>,
+    );
+
+    jest.advanceTimersByTime(6000);
+
+    wrapper.update();
+
+    expect(props.navigation.navigate).toHaveBeenCalledWith('Home');
+    wrapper.unmount();
+  });
+
+  it('If and else of useEffect should be working correctly', () => {
+    jest.useFakeTimers();
+
+    const props = createStoryScreenProps();
+    props.route.params.stories = {
+      stories: [
+        {
+          imageLink:
+            'https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcars&psig=AOvVaw2tJrsSDJK_jfSHbgnx7FiX&ust=1625234888760000&source=images&cd=vfe&ved=0CAcQjRxqFwoTCPDqrPOFwvECFQAAAAAdAAAAABAM',
+        },
+        {
+          imageLink:
+            'https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcars&psig=AOvVaw2tJrsSDJK_jfSHbgnx7FiX&ust=1625234888760000&source=images&cd=vfe&ved=0CAcQjRxqFwoTCPDqrPOFwvECFQAAAAAdAAAAABAM',
+        },
+      ],
+    };
+    const wrapper = mount(
+      <MockedProvider addTypename>
+        <StoryScreen {...props} />
+      </MockedProvider>,
+    );
+
+    jest.advanceTimersByTime(6000);
+
+    wrapper.update();
+
+    // expect(props.navigation.navigate).toHaveBeenCalledWith('Home');
+    wrapper.unmount();
   });
 });

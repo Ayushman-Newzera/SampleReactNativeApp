@@ -1,5 +1,4 @@
 import {MockedProvider} from '@apollo/client/testing';
-// import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 import {mount, shallow} from 'enzyme';
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
@@ -22,26 +21,10 @@ describe('UselessTextInputMultiline', () => {
         <SimpleImagePicker />
       </MockedProvider>,
     );
-    // console.log(component.get(0).props.children);
+
     expect(component.exists()).toBe(true);
     expect(component).toMatchSnapshot();
   });
-
-  //   it('AsyncStorage should store when storeData is called', () => {
-  //     // mockAsyncStorage.storeData = jest.fn();
-  //     // // mockAsyncStorage.storeData('newData');
-  //     // AsyncStorage.storeData = jest.fn();
-  //     // AsyncStorage.storeData('newData');
-  //     // const wrapper = shallow(
-  //     //   <MockedProvider>
-  //     //     <SimpleImagePicker />
-  //     //   </MockedProvider>,
-  //     // );
-  //     // console.log(wrapper.get(0));
-  //     // wrapper.update();
-  //     // // expect(mockAsyncStorage.storeData).toHaveBeenCalledWith('newData');
-  //     // expect(AsyncStorage.storeData).toHaveBeenCalledWith('newData');
-  //   });
 
   describe('ImagePicker should work properly', () => {
     it('should console user cancelled when response.didCancel is true', async () => {
@@ -63,9 +46,7 @@ describe('UselessTextInputMultiline', () => {
           <SimpleImagePicker />
         </MockedProvider>,
       );
-      // await wait(0);
-      // wrapper.update();
-      // console.log(wrapper.find('TouchableOpacity').length);
+
       const touchableOpacity = wrapper.find('TouchableOpacity').get(0);
       touchableOpacity.props.onPress();
       await wait(0);
@@ -99,7 +80,6 @@ describe('UselessTextInputMultiline', () => {
         'ImagePicker Error: ',
         'Here is the error',
       );
-      //   console.log(response);
     });
 
     it('should console custom button when response.customButton is truthy', async () => {

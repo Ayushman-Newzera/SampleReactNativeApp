@@ -18,9 +18,10 @@ db.getConnection(function (err, conn) {
       data = result;
     }
 
-    conn.release();
+    conn.destroy();
   });
 });
+
 
 class GetUserDetailsAPI {
   getUserDetails = () => {
