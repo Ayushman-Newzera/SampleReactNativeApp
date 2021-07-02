@@ -25,7 +25,6 @@ describe('UselessTextInputMultiline', () => {
     });
 
     it('should render a <View /> and go back to HomeScreen', async () => {
-      //   console.log(wrapper.find('Button').get(0));
       const Button = wrapper.find('Button').get(0);
       await Button.props.onPress();
       wrapper.update();

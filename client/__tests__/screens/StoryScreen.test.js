@@ -95,7 +95,6 @@ describe('UselessTextInputMultiline', () => {
 
     wrapper.update();
 
-    // expect(props.navigation.navigate).toHaveBeenCalledWith('Home');
     wrapper.unmount();
   });
 });

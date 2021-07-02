@@ -14,6 +14,7 @@ function ProfilePictureInput({route, navigation}) {
       <SimpleImagePicker
         asyncKey="@profilePicture"
         handleNavigation={handleNavigation}
+        title="Pick the image for your profile picture"
       />
     </View>
   );

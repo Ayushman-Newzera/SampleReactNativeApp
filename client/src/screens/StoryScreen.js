@@ -6,7 +6,6 @@ import ProgressBar from '../utilities/ProgressBar';
 
 function StoryScreen({route, navigation}) {
   const {stories, handleBorderActivity} = route.params;
-  // console.log('handle', handleBorderActivity);
   const userStories = stories.stories;
 
   const [curStory, setCurStory] = useState(0);

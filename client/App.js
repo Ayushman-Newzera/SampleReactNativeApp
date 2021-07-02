@@ -28,8 +28,6 @@ export const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// 192.168.1.35
-
 const Stack = createStackNavigator();
 
 function App() {

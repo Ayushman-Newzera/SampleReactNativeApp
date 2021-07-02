@@ -1,15 +1,10 @@
 // @flow
 
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
-import UselessTextInputMultiline from '../utilities/TextInput';
+import {StyleSheet, View} from 'react-native';
 import SimpleImagePicker from './SimpleImagePicker';
 
 function StoryInputScreen({navigation}) {
-  // useEffect(() => {
-  //   navigation.pop();
-  // }, [navigation]);
-
   const handleNavigation = () => {
     navigation.navigate('Home');
   };
@@ -19,13 +14,16 @@ function StoryInputScreen({navigation}) {
       <SimpleImagePicker
         asyncKey="@storyPicture"
         handleNavigation={handleNavigation}
+        title="Pick the image for your story"
       />
 
-      <UselessTextInputMultiline />
+      {/* currently we are not using the below functionality  */}
 
-      <View style={styles.submitButton}>
+      {/* <UselessTextInputMultiline /> */}
+
+      {/* <View style={styles.submitButton}>
         <Button title="Submit" onPress={() => navigation.navigate('Home')} />
-      </View>
+      </View> */}
     </View>
   );
 }

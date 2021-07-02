@@ -9,8 +9,6 @@ describe("GetUserDetailsAPI", () => {
         return;
       }
 
-    //   console.log(AddProfilePictureAPI);
-
       // if you got a connection...
       await conn.query(
         "UPDATE User SET profileImageLink = ? WHERE id = 1;",
@@ -19,7 +17,6 @@ describe("GetUserDetailsAPI", () => {
           if (err) {
             console.log(err);
           }
-        //   console.log("result", result);
 
         }
       );
@@ -28,8 +25,7 @@ describe("GetUserDetailsAPI", () => {
         if (err) {
           console.log(err);
         }
-
-        expect(result).toHaveLength(1);
+        expect(JSON.stringify(result)).toBe("[{\"profileImageLink\":\"Hi there!\"}]");
 
         conn.destroy();
       });

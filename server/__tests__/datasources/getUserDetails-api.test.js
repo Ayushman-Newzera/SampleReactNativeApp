@@ -15,7 +15,7 @@ describe("GetUserDetailsAPI", () => {
           console.log(err);
         }
         
-        expect(result).toHaveLength(1);
+        expect(JSON.stringify(result)).toBe("[{\"id\":1,\"name\":\"Byoung ho\",\"bio\":\"Photographer\",\"profileImageLink\":\"Hi there!\"}]");
 
         conn.destroy();
       });

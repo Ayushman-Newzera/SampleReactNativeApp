@@ -1,7 +1,5 @@
 // @flow
 
-// Global shared styles for screens
-
 import {StyleSheet} from 'react-native';
 
 export const STYLES = StyleSheet.create({

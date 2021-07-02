@@ -42,7 +42,6 @@ const mocks = [
       },
     },
     result: () => {
-      //   console.log('mutation called');
       return {
         data: {
           addProfilePicture:
@@ -221,8 +220,6 @@ describe('HomeScreen', () => {
     wrapper.update();
     expect(AsyncStorage.getItem).toHaveBeenCalledWith('@profilePicture');
     expect(AsyncStorage.getItem).toHaveBeenCalledWith('@storyPicture');
-    // const jsonValue = AsyncStorage.getItem('@storyPicture');
-    // console.log(jsonValue);
   });
 
   it('stories should not contain same image', async () => {

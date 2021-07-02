@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-// import {client} from '../../App';
 
 export const USER_DETAILS = gql`
   query UserDetails {
@@ -23,18 +22,7 @@ export const UPDATE_PROFILE = gql`
   }
 `;
 
-// type HomeScreenNavigationProp = StackNavigationProp<{Home: undefined}, 'Home'>;
-
-// type HomeScreenProps = {
-//   navigation: HomeScreenNavigationProp,
-// };
-
-// type HomeScreenProps = {
-//   navigation: PropTypes.object,
-// };
-
 function HomeScreen({navigation}) {
-  // const {navigation} = props;
   const [borderActive, setBorderActive] = useState(true);
 
   const anonymousImage = {
@@ -75,7 +63,6 @@ function HomeScreen({navigation}) {
       const jsonValue = await AsyncStorage.getItem('@profilePicture');
 
       if (jsonValue != null && jsonValue !== undefined) {
-        // console.log('string', JSON.stringify(JSON.parse(jsonValue)));
         await addProfileImageLink({
           variables: {
             profileImageLink: JSON.stringify(JSON.parse(jsonValue)),
@@ -84,17 +71,13 @@ function HomeScreen({navigation}) {
           .then(res => {
             setProfilePicture(JSON.parse(res.data.addProfilePicture));
           })
-          // eslint-disable-next-line no-shadow
-          .catch(error => {
-            console.log(error);
+          .catch(err => {
+            console.log(err);
           });
       } else {
         setProfilePicture(anonymousImage);
       }
-      // return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      // error reading value
-    }
+    } catch (e) {}
   };
 
   const getDataStory = async () => {
@@ -109,21 +92,14 @@ function HomeScreen({navigation}) {
             val += 1;
           }
         });
-        // eslint-disable-next-line eqeqeq
-        if (val == 0) {
+
+        if (val === 0) {
           setStories(prev => [...prev, {imageLink: value}]);
           setBorderActive(true);
         }
       }
-      // return jsonValue != null ? jsonValue : null;
-    } catch (e) {
-      // error reading value
-    }
+    } catch (e) {}
   };
-
-  // useEffect(() => {
-  //   console.log(loading, error, data);
-  // }, [loading, error, data]);
 
   if (loading) {
     return <Text>Loading...</Text>;
@@ -134,9 +110,7 @@ function HomeScreen({navigation}) {
   }
 
   return (
-    // <ApolloProvider client={client}>
-    // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={styles.mainContainer}>
       <View style={styles.profileContainer}>
         <TouchableOpacity
           onPress={() => {
@@ -177,11 +151,11 @@ function HomeScreen({navigation}) {
         <Text>{data.getUserDetails.bio}</Text>
       </View>
     </View>
-    // </ApolloProvider>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   container: {
     height: 200,
     width: 200,
