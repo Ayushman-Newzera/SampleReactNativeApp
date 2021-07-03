@@ -4,7 +4,13 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import SimpleImagePicker from './SimpleImagePicker';
 
+/**
+ *
+ * @param {navigation} it is the prop to handle navigation
+ * @returns StoryInput Screen
+ */
 function StoryInputScreen({navigation}) {
+  /** Function to handle navigation */
   const handleNavigation = () => {
     navigation.navigate('Home');
   };

@@ -6,6 +6,7 @@ import {useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+/** Query for getting user details */
 export const USER_DETAILS = gql`
   query UserDetails {
     getUserDetails {
@@ -16,21 +17,31 @@ export const USER_DETAILS = gql`
   }
 `;
 
+/** Mutation for updating the profile picture of the user */
 export const UPDATE_PROFILE = gql`
   mutation UpdateProfileMutation($profileImageLink: String) {
     addProfilePicture(profileImageLink: $profileImageLink)
   }
 `;
 
+/**
+ *
+ * @param {navigation} it is the navigation prop
+ * @returns HomeScreen
+ */
 function HomeScreen({navigation}) {
+  /** To keep a track of the state of the border(Active or Inactive) */
   const [borderActive, setBorderActive] = useState(true);
 
+  /** source for the anonymousImage which is to be displayed when there is no profile picture */
   const anonymousImage = {
     uri: 'https://image.shutterstock.com/image-illustration/photo-silhouette-male-profile-white-260nw-1018631086.jpg',
   };
 
+  /** To keep a track of the profile picture of the user */
   const [profilePicture, setProfilePicture] = useState(anonymousImage);
 
+  /** An array of stories, to keep a track of the stories of the user */
   const [stories, setStories] = useState([
     {
       imageLink:
@@ -38,12 +49,16 @@ function HomeScreen({navigation}) {
     },
   ]);
 
+  /** Query to get the details of the user */
   const {loading, error, data} = useQuery(USER_DETAILS);
 
+  /** Mutation to update the profile picture of the user */
   const [addProfileImageLink] = useMutation(UPDATE_PROFILE); // Hooks should not be rendered conditionally
 
+  /** React hook to check whether the current screen is in focus or not */
   const isFocused = useIsFocused();
 
+  /** Function to handle the activity of the border */
   const handleBorderActivity = () => {
     setBorderActive(false);
   };
@@ -54,10 +69,15 @@ function HomeScreen({navigation}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFocused]);
 
+  /** Function to be able to navigate to the Stories Input screen */
   const buttonClickedHandler = () => {
     navigation.navigate('Stories Input');
   };
 
+  /**
+   * Function to get the profile picture from the async storage
+   * and then updating it using the mutation
+   */
   const getDataProfile = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@profilePicture');
@@ -80,6 +100,10 @@ function HomeScreen({navigation}) {
     } catch (e) {}
   };
 
+  /**
+   * Function to get the info about the stories of the user
+   * and adding the story after selecting the image with the help of image picker
+   */
   const getDataStory = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@storyPicture');
@@ -101,10 +125,12 @@ function HomeScreen({navigation}) {
     } catch (e) {}
   };
 
+  /** When loading state is true */
   if (loading) {
     return <Text>Loading...</Text>;
   }
 
+  /** If there is some error while getting the user details */
   if (error) {
     return <Text>`Error! WTF is ${error.message}`</Text>;
   }
@@ -198,9 +224,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-// HomeScreen.PropTypes = {
-//   navigation: PropTypes.array,
-// };
 
 export default HomeScreen;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
+exports[`StoryInputScreen Component should render correctly 1`] = `
 <View
   style={
     Object {
@@ -12,23 +12,7 @@ exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
   <SimpleImagePicker
     asyncKey="@storyPicture"
     handleNavigation={[Function]}
+    title="Pick the image for your story"
   />
-  <UselessTextInputMultiline />
-  <View
-    style={
-      Object {
-        "marginBottom": 50,
-        "marginLeft": 120,
-        "marginTop": 50,
-        "position": "relative",
-        "width": 150,
-      }
-    }
-  >
-    <Button
-      onPress={[Function]}
-      title="Submit"
-    />
-  </View>
 </View>
 `;

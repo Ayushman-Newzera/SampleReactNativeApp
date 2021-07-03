@@ -22,9 +22,7 @@ const createStoryScreenProps = props => ({
   ...props,
 });
 
-/**
- * Constants
- */
+/** Constants */
 const stories = [
   {
     imageLink:
@@ -32,14 +30,15 @@ const stories = [
   },
 ];
 
+/** Function to be used as a prop */
 const handleBorderActivity = {
   handleBorderActivity: () => {
     // console.log('here');
   },
 };
 
-describe('UselessTextInputMultiline', () => {
-  it('TextInput should render correctly', () => {
+describe('Story Screen', () => {
+  it('Component should render correctly', () => {
     const props = createStoryScreenProps();
     const wrapper = mount(
       <MockedProvider addTypename>
@@ -51,7 +50,7 @@ describe('UselessTextInputMultiline', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('useEffect and Timeout should work correctly', () => {
+  it('useEffect and setInterval should work correctly', () => {
     jest.useFakeTimers();
 
     const props = createStoryScreenProps();

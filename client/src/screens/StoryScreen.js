@@ -4,12 +4,21 @@ import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import ProgressBar from '../utilities/ProgressBar';
 
+/**
+ *
+ * @param {route} param0 route prop
+ * @param {navigation} param1 navigaiton prop
+ * @returns Story Screen
+ */
 function StoryScreen({route, navigation}) {
+  /** Accesing stories and handleBorderActivity function from route */
   const {stories, handleBorderActivity} = route.params;
   const userStories = stories.stories;
 
+  /** To keep a track of the current story to be displayed on the screen */
   const [curStory, setCurStory] = useState(0);
 
+  /** Utility function for the functioning of the progress bar */
   const useProgress = (maxTimeInSeconds = 5) => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [progress, setProgress] = useState(0);

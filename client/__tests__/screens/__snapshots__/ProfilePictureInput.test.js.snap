@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
+exports[`ProfilePictureInput Screen Component should render correctly 1`] = `
 <View
   style={
     Object {
@@ -12,6 +12,7 @@ exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
   <SimpleImagePicker
     asyncKey="@profilePicture"
     handleNavigation={[Function]}
+    title="Pick the image for your profile picture"
   />
 </View>
 `;

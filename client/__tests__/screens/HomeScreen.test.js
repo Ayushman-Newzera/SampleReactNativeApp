@@ -9,6 +9,14 @@ import HomeScreen, {
 } from '../../src/screens/HomeScreen';
 const wait = require('waait');
 
+/** Variable to keep a track of the mutation error */
+let mutationError = true;
+
+/**
+ * Used to create an object of props
+ * @param {object} props Custom props that needs to pass
+ * @returns Props to be passed to the component/screen
+ */
 const createTestProps = props => ({
   navigation: {
     navigate: jest.fn(),
@@ -16,6 +24,7 @@ const createTestProps = props => ({
   ...props,
 });
 
+/** Following are the mocks for the getUserDetails query and updateProfilePicture mutation */
 const mocks = [
   {
     request: {
@@ -42,6 +51,7 @@ const mocks = [
       },
     },
     result: () => {
+      mutationError = false;
       return {
         data: {
           addProfilePicture:
@@ -52,7 +62,9 @@ const mocks = [
   },
 ];
 
+/** Following are the tests for the Home Screen */
 describe('HomeScreen', () => {
+  /** Initially the screen should render the loading text */
   it('should render loading state initially', () => {
     const props = createTestProps({});
     const wrapper = mount(
@@ -64,6 +76,7 @@ describe('HomeScreen', () => {
     expect(wrapper.text()).toBe('Loading...');
   });
 
+  /** Once the loading is done, the screen should render the data */
   it('should render data after loading', async () => {
     const props = createTestProps({});
     const wrapper = mount(
@@ -80,6 +93,10 @@ describe('HomeScreen', () => {
     expect(wrapper.text()[0]).toBe('+');
   });
 
+  /**
+   * If there is error while fetching the data from the server,
+   * then the error message should be rendered on the screen
+   */
   it('error part for query, should show error UI', async () => {
     const props = createTestProps({});
 
@@ -104,8 +121,12 @@ describe('HomeScreen', () => {
     expect(wrapper.text()).toBe('`Error! WTF is $here goes the error`');
   });
 
+  /**
+   * If there is error while updating the profile picture,
+   * then console should log the error
+   */
   it('error part for mutation, should console log error', async () => {
-    console.log = jest.fn();
+    // console.log = jest.fn();
     AsyncStorage.getItem = jest.fn();
     useIsFocused.mockImplementation(() => true);
 
@@ -149,7 +170,9 @@ describe('HomeScreen', () => {
               '{"uri":"file:///storage/emulated/0/Pictures/image-820516d8-2143-4614-8c60-fb9862e6587a.jpg"}',
           },
         },
-        error: new Error('error for update profile mutation'),
+        error: {
+          message: 'error for update profile mutation',
+        },
       },
     ];
 
@@ -161,9 +184,10 @@ describe('HomeScreen', () => {
 
     await wait(1000);
     wrapper.update();
-    expect(wrapper.text()).toBeTruthy();
+    expect(mutationError).toBe(true);
   });
 
+  /** Navigation should be handled correctly */
   it('should handle navigation correctly', async () => {
     const props = createTestProps({});
     const wrapper = mount(
@@ -190,6 +214,10 @@ describe('HomeScreen', () => {
     expect(props.navigation.navigate).toHaveBeenCalledWith('Stories Input');
   });
 
+  /**
+   * Should fetch correct data from the server for both the getUserDetails query
+   * and updateProfilePicture mutation.
+   */
   it('getDataStory and getDataStory should work correctly', async () => {
     AsyncStorage.getItem = jest.fn();
 
@@ -222,6 +250,7 @@ describe('HomeScreen', () => {
     expect(AsyncStorage.getItem).toHaveBeenCalledWith('@storyPicture');
   });
 
+  /** Stories should not contain same images */
   it('stories should not contain same image', async () => {
     AsyncStorage.getItem = jest.fn();
 

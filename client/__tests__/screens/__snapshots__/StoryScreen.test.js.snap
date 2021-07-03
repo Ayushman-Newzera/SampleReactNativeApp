@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UselessTextInputMultiline TextInput should render correctly 1`] = `
+exports[`Story Screen Component should render correctly 1`] = `
 <MockedProvider
   addTypename={true}
 >

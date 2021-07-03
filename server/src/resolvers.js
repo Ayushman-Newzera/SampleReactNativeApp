@@ -4,12 +4,14 @@
 const db = require('./db');
 
 const resolvers = {
+  /** Query for getting the user details */
   Query: {
     getUserDetails: (_, __, { dataSources }) => {
       return dataSources.getUserDetailsAPI.getUserDetails();
     },
   },
 
+  /** Mutation for updating the profile picture of the user */
   Mutation: {
     addProfilePicture: async (_, { profileImageLink }, { dataSources }) => {
       

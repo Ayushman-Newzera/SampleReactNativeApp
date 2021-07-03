@@ -13,7 +13,6 @@ export const STYLES = StyleSheet.create({
   title: {
     fontSize: 22,
   },
-  // add below
   selectButtonContainer: {
     margin: 20,
     borderRadius: 5,

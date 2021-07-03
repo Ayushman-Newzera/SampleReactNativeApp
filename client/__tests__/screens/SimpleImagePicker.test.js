@@ -5,17 +5,12 @@ import ImagePicker from 'react-native-image-picker';
 import wait from 'waait';
 import SimpleImagePicker from '../../src/screens/SimpleImagePicker';
 
-const options = {
-  title: 'You can choose one image',
-  maxWidth: 256,
-  maxHeight: 256,
-  storageOptions: {
-    skipBackup: true,
-  },
-};
-
+/**
+ * Following are the tests for SimpleImagePicker Screen
+ */
 describe('UselessTextInputMultiline', () => {
-  it('TextInput should render correctly', () => {
+  /** Snapshot Testing */
+  it('Component should render correctly', () => {
     const component = shallow(
       <MockedProvider>
         <SimpleImagePicker />
@@ -26,6 +21,7 @@ describe('UselessTextInputMultiline', () => {
     expect(component).toMatchSnapshot();
   });
 
+  /** Image should be picked correctly with the help of image picker */
   describe('ImagePicker should work properly', () => {
     it('should console user cancelled when response.didCancel is true', async () => {
       const response = {
@@ -54,6 +50,7 @@ describe('UselessTextInputMultiline', () => {
       expect(console.log).toHaveBeenCalledWith('User cancelled photo picker');
     });
 
+    /** Error should be consoled when the image picker is unable to pick the image */
     it('should console error when response.error is true', async () => {
       const response = {
         didCancel: false,
@@ -82,6 +79,7 @@ describe('UselessTextInputMultiline', () => {
       );
     });
 
+    /** Custom button should be consoled when the customButton property is truthy */
     it('should console custom button when response.customButton is truthy', async () => {
       const response = {
         didCancel: false,
@@ -110,6 +108,7 @@ describe('UselessTextInputMultiline', () => {
       );
     });
 
+    /** Correct image uri should be selected by the image picker */
     it('should have selected the correct uri', async () => {
       const response = {
         didCancel: false,

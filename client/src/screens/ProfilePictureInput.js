@@ -4,7 +4,13 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import SimpleImagePicker from './SimpleImagePicker';
 
-function ProfilePictureInput({route, navigation}) {
+/**
+ *
+ * @param {navigation} it is the navigation prop
+ * @returns ProfilePictureInput Screen
+ */
+function ProfilePictureInput({navigation}) {
+  /** Function to handle the navigation */
   const handleNavigation = () => {
     navigation.navigate('Home');
   };
